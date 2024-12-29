@@ -1,17 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "./ui/form";
 import { Input } from "./ui/input";
-import { Control, Field } from "react-hook-form";
+import { Control } from "react-hook-form";
 import { FormFieldType } from "./forms/PatientForm";
 import Image from "next/image";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
 interface CustomProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -58,10 +60,14 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
       return (
         <div className="flex rounded-md border border-dark-500 bg-dark-400">
           <FormControl>
-            <Input
+            <PhoneInput
+              defaultCountry="IN"
               placeholder={placeholder}
-              {...field}
-              className="shad-input"
+              international
+              withCountryCallingCode
+              value={field.value as E164Number | undefined}
+              onChange={field.onChange}
+              className="input-phone"
             />
           </FormControl>
         </div>
