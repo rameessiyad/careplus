@@ -14,9 +14,9 @@ import { FormFieldType } from "./forms/PatientForm";
 import Image from "next/image";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import { E164Number } from "libphonenumber-js/core";
 
 interface CustomProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: Control<any>;
   fieldType: FormFieldType;
   name?: string;
@@ -61,8 +61,8 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
         <div className="flex rounded-md border border-dark-500 bg-dark-400">
           <FormControl>
             <PhoneInput
-              defaultCountry="IN"
-              placeholder={placeholder}
+              defaultCountry="US"
+              placeholder={props.placeholder}
               international
               withCountryCallingCode
               value={field.value as E164Number | undefined}
